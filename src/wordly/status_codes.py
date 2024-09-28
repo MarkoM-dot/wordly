@@ -1,3 +1,5 @@
+"""DICT status codes."""
+
 from enum import Enum, unique
 from functools import cache
 

@@ -1,7 +1,9 @@
+"""Command line options."""
+
 import argparse
 import asyncio
 from collections.abc import Sequence
-from . import __app_name__, __app_description__, __version__, __epilog__
+from wordly import __app_name__, __app_description__, __version__, __epilog__
 from wordly.words import Word
 
 

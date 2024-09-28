@@ -1,3 +1,5 @@
+"""Line reader."""
+
 from collections import defaultdict
 from wordly.status_codes import Status
 

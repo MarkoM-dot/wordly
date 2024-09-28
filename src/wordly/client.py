@@ -1,3 +1,5 @@
+"""DICT client."""
+
 import asyncio
 from wordly.status_codes import Status
 from wordly.parser import DictParser

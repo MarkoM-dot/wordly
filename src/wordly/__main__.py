@@ -1,3 +1,5 @@
+"""Module entry point."""
+
 from wordly.cli import main
 import asyncio
 
