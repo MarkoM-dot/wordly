@@ -4,7 +4,6 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "wordly"
-version = "0.0.1"
 authors = [
     { name="Marko Marić", email="marko@lambdabread.io" },
 ]
