@@ -12,11 +12,15 @@ license = { file = "LICENSE" }
 description = "A simple python client that requests dictionary definitions from a server that implements Dictionary Server Protocol"
 
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.11"
 classifiers = [
-    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: System :: Networking",
 ]
 keywords = ["wordly", "definition", "dictionary", "DICT"]
 
@@ -24,7 +28,8 @@ keywords = ["wordly", "definition", "dictionary", "DICT"]
 build = ["build", "twine"]
 
 [project.urls]
-repository = "https://github.com/MarkoM-dot/wordly"
+Repository = "https://github.com/MarkoM-dot/wordly"
+Issues = "https://github.com/MarkoM-dot/wordly/issues"
 
 [project.scripts]
 wordly = "wordly.__main__:run"
