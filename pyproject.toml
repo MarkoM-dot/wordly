@@ -4,6 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "wordly"
+dynamic = ["version"]
 authors = [
     { name="Marko Marić", email="marko@lambdabread.io" },
 ]
@@ -29,4 +30,4 @@ repository = "https://github.com/MarkoM-dot/wordly"
 wordly = "wordly.__main__:run"
 
 [tool.setuptools.dynamic]
-version = { attr = "wordly.__version__"}
+version = { attr = "wordly.__version__" }
