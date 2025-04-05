@@ -11,6 +11,11 @@ class DictParser:
         self.DELIMITER = delimiter
 
     def _process_line(self, ending: str = ""):
+        # Might not need to decode here but split the bytes and
+        # prepare text later
+        # turn the defaultdict(bytes) or bytearray
+        # use b"".join() or bytearray and extend the message
+        # anyway, just do not do string concatenation here
         code = self.line[:3]
 
         if status := Status.by_value(code):
