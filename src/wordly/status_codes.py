@@ -1,11 +1,24 @@
 """DICT status codes."""
 
-from enum import Enum, unique
+from enum import unique, ReprEnum
 from functools import cache
 
 
+
+class BytesEnum(bytes, ReprEnum):
+    """
+    Enum where members are also (and must be) bytes
+    """
+
+    def __new__(cls, *values):
+        """Values must be already of type `bytes`."""
+        if any(not isinstance(value, bytes) for value in values):
+            raise TypeError(f"All values must be of type `bytes`: got {values}")
+        return super().__new__(cls, *values)
+
+
 @unique
-class Status(Enum):
+class Status(BytesEnum):
     """
     Enumeration of possible status responses from a DICT server.
 
