@@ -6,30 +6,30 @@ from wordly.status_codes import Status
 
 class DictParser:
     def __init__(self, delimiter: bytes = b"\r\n"):
-        self.line = b""
-        self.mapping = defaultdict(str)
+        self.line = bytearray()
+        self.mapping = defaultdict(bytearray)
         self.DELIMITER = delimiter
 
-    def _process_line(self, ending: str = ""):
-        # Might not need to decode here but split the bytes and
-        # prepare text later
-        # turn the defaultdict(bytes) or bytearray
-        # use b"".join() or bytearray and extend the message
-        # anyway, just do not do string concatenation here
+    def _process_line(self, ending: bytes = b""):
         code = self.line[:3]
+        status = Status.by_value(bytes(code))
 
-        if status := Status.by_value(code):
-            self.mapping[status.name] += self.line[4:].decode() + ending
+        if status:
+            data = self.line[4:]
             self.part = status.name
         else:
-            self.mapping[self.part] += self.line.decode() + ending
+            data = self.line
+
+        buf = self.mapping[self.part]
+        buf.extend(data)
+        buf.extend(ending)
 
     def feed(self, stream: bytes):
         split = stream.split(self.DELIMITER, 1)
         while len(split) > 1:
             old, new = split
             self.line += old
-            self._process_line("\n")
+            self._process_line(b"\n")
             self.line = b""
             split = new.split(self.DELIMITER, 1)
 
