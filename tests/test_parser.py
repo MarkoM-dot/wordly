@@ -13,12 +13,12 @@ class TestParser(unittest.TestCase):
 
         self.assertEqual(
             self.line_reader.mapping[Status.INITIAL_CONNECTION.name],
-            "banner info from example.org\n",
+            bytearray(b"banner info from example.org\n"),
         )
-        self.assertEqual(self.line_reader.mapping[Status.COMMAND_COMPLETE.name], "ok\n")
+        self.assertEqual(self.line_reader.mapping[Status.COMMAND_COMPLETE.name], bytearray(b"ok\n"))
         self.assertEqual(
             self.line_reader.mapping[Status.CLOSING_CONNECTION.name],
-            "bye [d/m/c = 0/0/0; 0.000r 0.000u 0.000s]",
+            bytearray(b"bye [d/m/c = 0/0/0; 0.000r 0.000u 0.000s]"),
         )
 
     def test_define(self):
@@ -26,9 +26,9 @@ class TestParser(unittest.TestCase):
 
         self.assertEqual(
             self.line_reader.mapping[Status.INITIAL_CONNECTION.name],
-            "banner information contained here\n",
+            bytearray(b"banner information contained here\n"),
         )
         self.assertEqual(
             self.line_reader.mapping[Status.CLOSING_CONNECTION.name],
-            "bye [d/m/c = 0/0/0; 0.000r 0.000u 0.000s]",
+            bytearray(b"bye [d/m/c = 0/0/0; 0.000r 0.000u 0.000s]"),
         )
