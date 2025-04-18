@@ -1,16 +1,26 @@
-"""Line reader."""
+"""DICT parser or line reader."""
+
+from __future__ import annotations
 
 from collections import defaultdict
+
 from wordly.status_codes import Status
 
 
 class DictParser:
+    """Line reader for parsing byte stream of DICT protocol.
+
+    Creates a map of DICT status code and associated information.
+    """
+
     def __init__(self, delimiter: bytes = b"\r\n"):
+        """Initialize."""
         self.line = bytearray()
         self.mapping = defaultdict(bytearray)
         self.DELIMITER = delimiter
 
     def _process_line(self, ending: bytes = b""):
+        """Process line."""
         code = self.line[:3]
         status = Status.by_value(bytes(code))
 
@@ -25,6 +35,11 @@ class DictParser:
         buf.extend(ending)
 
     def feed(self, stream: bytes):
+        """Feed stream of `bytes` to line reader.
+
+        Calls `_process_line` on bytes stream until delimiter
+        can no longer be found.
+        """
         split = stream.split(self.DELIMITER, 1)
         while len(split) > 1:
             old, new = split

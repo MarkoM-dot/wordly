@@ -1,14 +1,13 @@
 """DICT status codes."""
 
-from enum import unique, ReprEnum
+from __future__ import annotations
+
+from enum import ReprEnum, unique
 from functools import cache
 
 
-
 class BytesEnum(bytes, ReprEnum):
-    """
-    Enum where members are also (and must be) bytes
-    """
+    """Enum where members are also (and must be) `bytes`."""
 
     def __new__(cls, *values):
         """Values must be already of type `bytes`."""
@@ -19,8 +18,7 @@ class BytesEnum(bytes, ReprEnum):
 
 @unique
 class Status(BytesEnum):
-    """
-    Enumeration of possible status responses from a DICT server.
+    """Enumeration of possible status responses from a DICT server.
 
     Note:
         The first digit of the response has the following meaning:
@@ -68,9 +66,11 @@ class Status(BytesEnum):
 
     @classmethod
     @cache
-    def statuses(cls):
+    def statuses(cls) -> dict[bytes, Status]:
+        """Return `dict` of status values as keys and members as values."""
         return {member.value: member for _, member in cls.__members__.items()}
 
     @classmethod
-    def by_value(cls, value):
+    def by_value(cls, value: bytes) -> Status | None:
+        """Return a status code given a `bytes` value."""
         return cls.statuses().get(value)

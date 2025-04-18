@@ -1,19 +1,24 @@
 """Command line options."""
 
+from __future__ import annotations
+
 import argparse
 import asyncio
 from collections.abc import Sequence
-from wordly import __app_name__, __app_description__, __version__, __epilog__
+
+from wordly import __app_description__, __app_name__, __epilog__, __version__
 from wordly.words import Word
 
 
-async def print_definition(word: str, hostname: str, port: int):
+async def print_definition(word: str, hostname: str, port: int) -> None:
+    """Print definitions to stdout."""
     w = Word(word, hostname=hostname, port=port)
     definition = await w.adefinition
     print(definition)
 
 
-async def main(argv: Sequence[str] | None = None):
+async def main(argv: Sequence[str] | None = None) -> None:
+    """Run command line application."""
     parser = argparse.ArgumentParser(
         prog=__app_name__,
         description=__app_description__,

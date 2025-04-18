@@ -1,12 +1,18 @@
 """DICT client."""
 
+from __future__ import annotations
+
 import asyncio
-from wordly.status_codes import Status
+
 from wordly.parser import DictParser
+from wordly.status_codes import Status
 
 
 class DictClient:
+    """Client."""
+
     def __init__(self, hostname: str = "dict.org", port: int = 2628) -> None:
+        """Initialize."""
         self.hostname = hostname
         self.port = port
         self.line_reader = DictParser()
@@ -16,19 +22,20 @@ class DictClient:
         self.READ_BYTES = 1024
 
     def __repr__(self) -> str:
+        """Return string representation of object."""
         return f"{self.__class__.__name__}({self.hostname=}, {self.port=})"
 
     async def __aenter__(self):
+        """Enter method for async context manager."""
         await self.connect()
         return self
 
     async def __aexit__(self, exc_type, exc, tb):
+        """Exit method for async context manager."""
         await self.disconnect()
 
     async def connect(self):
-        """
-        Upon successful connection a status code of 220 is expected.
-        """
+        """Upon successful connection a status code of 220 is expected."""
         self.reader, self.writer = await asyncio.open_connection(
             self.hostname, self.port
         )
@@ -41,7 +48,7 @@ class DictClient:
         raise ConnectionError(f"Could not connect to: {self.hostname=}, {self.port=}")
 
     async def disconnect(self):
-        assert self.writer and self.reader
+        """Close client connection."""
         self.writer.write(b"QUIT\r\n")
         await self.writer.drain()
         while Status.CLOSING_CONNECTION.name not in self.line_reader.mapping:
@@ -51,18 +58,17 @@ class DictClient:
         self.writer.close()
         await self.writer.wait_closed()
 
-    async def _send(self, command: bytes):
+    async def _send(self, command: bytes) -> DictParser:
+        """Return line reader given a command."""
         if None in (self.reader, self.writer):
             self.reader, self.writer = await self.connect()
         else:
             new_line_reader = DictParser()
-            new_line_reader.mapping[
-                Status.INITIAL_CONNECTION.name
-            ] = self.line_reader.mapping[Status.INITIAL_CONNECTION.name]
+            new_line_reader.mapping[Status.INITIAL_CONNECTION.name] = (
+                self.line_reader.mapping[Status.INITIAL_CONNECTION.name]
+            )
             self.line_reader = new_line_reader
             self.parsers.append(self.line_reader)
-
-        assert self.reader and self.writer
 
         self.writer.write(command)
         await self.writer.drain()
@@ -76,23 +82,23 @@ class DictClient:
         return self.line_reader
 
     async def define(self, word: str, database: str = "!") -> DictParser:
+        """Return line reader given word and database."""
         command = f"DEFINE {database} {word}\r\n".encode()
         return await self._send(command)
 
     async def help(self) -> DictParser:
-        command = "HELP\r\n".encode()
+        """Return line reader with helpful information."""
+        command = b"HELP\r\n"
         return await self._send(command)
 
-    async def match(self, word: str, database: str = "*", strategy: str = "."):
-        """
-        Match a word in a database using a strategy.
-        """
+    async def match(
+        self, word: str, database: str = "*", strategy: str = "."
+    ) -> DictParser:
+        """Match a word in a database using a strategy."""
         command = f"MATCH {database} {strategy} {word}".encode()
         return await self._send(command)
 
-    async def show(self, option: str = "DB"):
-        """
-        Show more information
-        """
+    async def show(self, option: str = "DB") -> DictParser:
+        """Show more information."""
         command = f"SHOW {option}".encode()
         return await self._send(command)

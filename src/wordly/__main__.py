@@ -1,10 +1,14 @@
 """Module entry point."""
 
-from wordly.cli import main
+from __future__ import annotations
+
 import asyncio
+
+from wordly.cli import main
 
 
 def run():
+    """Run async cli."""
     asyncio.run(main())
 
 

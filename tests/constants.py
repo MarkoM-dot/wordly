@@ -1,2 +1,57 @@
-HELP_OUTPUT = b"220 banner info from example.org\r\n113 help text follows\r\nDEFINE database word         -- look up word in database\r\nMATCH database strategy word -- match word in database using strategy\r\nSHOW DB                      -- list all accessible databases\r\nSHOW DATABASES               -- list all accessible databases\r\nSHOW STRAT                   -- list available matching strategies\r\nSHOW STRATEGIES              -- list available matching strategies\r\nSHOW INFO database           -- provide information about the database\r\nSHOW SERVER                  -- provide site-specific information\r\nOPTION MIME                  -- use MIME headers\r\nCLIENT info                  -- identify client to server\r\nAUTH user string             -- provide authentication information\r\nSTATUS                       -- display timing information\r\nHELP                         -- display this help information\r\nQUIT                         -- terminate connection\r\n\r\nThe following commands are unofficial server extensions for debugging\r\nonly.  You may find them useful if you are using telnet as a client.\r\nIf you are writing a client, you MUST NOT use these commands, since\r\nthey won't be supported on any other server!\r\n\r\nD word                       -- DEFINE * word\r\nD database word              -- DEFINE database word\r\nM word                       -- MATCH * . word\r\nM strategy word              -- MATCH * strategy word\r\nM database strategy word     -- MATCH database strategy word\r\nS                            -- STATUS\r\nH                            -- HELP\r\nQ                            -- QUIT\r\n.\r\n250 ok\r\n221 bye [d/m/c = 0/0/0; 0.000r 0.000u 0.000s]"
-PROGRAMMING_DEFINITION = b'220 banner information contained here\r\n250 ok\r\n150 1 definitions retrieved\r\n151 "programming" wn "WordNet (r) 3.0 (2006)"\r\nprogramming\r\n    n 1: setting an order and time for planned events [syn:\r\n         {scheduling}, {programming}, {programing}]\r\n    2: creating a sequence of instructions to enable the computer to\r\n       do something [syn: {programming}, {programing}, {computer\r\n       programming}, {computer programing}]\r\n.\r\n250 ok [d/m/c = 1/0/33; 0.000r 0.000u 0.000s]\r\n221 bye [d/m/c = 0/0/0; 0.000r 0.000u 0.000s]'
+"""Constants used for testing."""
+
+from __future__ import annotations
+
+HELP_OUTPUT = (
+    b"220 banner info from example.org\r\n"
+    b"113 help text follows\r\nDEFINE database"
+    b"word         -- look up word in database"
+    b"\r\nMATCH database strategy word --"
+    b"match word in database using strategy"
+    b"\r\nSHOW DB                      -- "
+    b"list all accessible databases\r\nSHOW"
+    b"DATABASES               -- list all"
+    b"accessible databases\r\nSHOW STRAT"
+    b" -- list available matching strategies"
+    b"\r\nSHOW STRATEGIES              --"
+    b" list available matching strategies\r\n"
+    b"SHOW INFO database           -- provide"
+    b" information about the database\r\nSHOW"
+    b" SERVER                  -- provide "
+    b"site-specific information\r\nOPTION MIME"
+    b"    -- use MIME headers\r\nCLIENT info"
+    b"-- identify client to server\r\nAUTH user"
+    b"string             -- provide authentication"
+    b" information\r\nSTATUS                       "
+    b"-- display timing information\r\nHELP        "
+    b"-- display this help information\r\nQUIT"
+    b" -- terminate connection\r\n\r\nThe following"
+    b" commands are unofficial server extensions for"
+    b" debugging\r\nonly.  You may find them useful"
+    b" if you are using telnet as a client.\r\nIf"
+    b" you are writing a client, you MUST NOT use"
+    b" these commands, since\r\nthey won't be supported"
+    b" on any other server!\r\n\r\nD word           "
+    b" -- DEFINE * word\r\nD database word      "
+    b" -- DEFINE database word\r\nM word            "
+    b" -- MATCH * . word\r\nM strategy word       "
+    b" -- MATCH * strategy word\r\nM database strategy word"
+    b" -- MATCH database strategy word\r\nS       "
+    b" -- STATUS\r\nH                            "
+    b"-- HELP\r\nQ                            "
+    b"-- QUIT\r\n.\r\n250 ok\r\n221 bye [d/m/c ="
+    b" 0/0/0; 0.000r 0.000u 0.000s]"
+)
+
+PROGRAMMING_DEFINITION = (
+    b"220 banner information contained here\r\n250 ok\r\n"
+    b'150 1 definitions retrieved\r\n151 "programming" wn '
+    b'"WordNet (r) 3.0 (2006)"\r\nprogramming\r\n    n 1: '
+    b"setting an order and time for planned events [syn:\r\n"
+    b"        {scheduling}, {programming}, {programing}]\r\n"
+    b"      2: creating a sequence of instructions to enable "
+    b"the computer to\r\n       do something [syn: {programming}"
+    b", {programing}, {computer\r\n       programming}, {computer "
+    b"programing}]\r\n.\r\n250 ok [d/m/c = 1/0/33; 0.000r 0.000u "
+    b"0.000s]\r\n221 bye [d/m/c = 0/0/0; 0.000r 0.000u 0.000s]"
+)

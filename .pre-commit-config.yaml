@@ -1,23 +1,13 @@
 repos:
-  - repo: https://github.com/compilerla/conventional-pre-commit
-    rev: v4.0.0
+  - repo: local
     hooks:
-      - id: conventional-pre-commit
-        stages: [commit-msg]
-        args: []
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
-    hooks:
-    - id: trailing-whitespace
-    - id: debug-statements
-    - id: detect-private-key
-    - id: requirements-txt-fixer
-    - id: check-toml
-  - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.11.4
-    hooks:
-    - id: ruff
-      args:
-      - --fix
-      - --exit-non-zero-on-fix
-    - id: ruff-format
+      - id: format
+        name: format
+        entry: uvx ruff format
+        language: system
+        types: [python]
+      - id: lint
+        name: lint
+        entry: uvx ruff check
+        language: system
+        types: [python]
