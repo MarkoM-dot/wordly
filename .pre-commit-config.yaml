@@ -11,3 +11,19 @@ repos:
         entry: uvx ruff check
         language: system
         types: [python]
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+    - id: check-yaml
+    - id: trailing-whitespace
+    - id: check-json
+    - id: debug-statements
+    - id: detect-private-key
+    - id: check-added-large-files
+
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: v1.17.0
+    hooks:
+      - id: commitizen
+        stages: [commit-msg]
