@@ -1,4 +1,7 @@
-"""Command line options."""
+"""Command line application module.
+
+Parses command line arguments passed to the app and prints word definitions.
+"""
 
 from __future__ import annotations
 
