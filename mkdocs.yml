@@ -1,0 +1,15 @@
+site_name: Wordly
+
+nav:
+  - index.md
+  - tutorials.md
+  - How-To Guides: how-to-guides.md
+  - reference.md
+  - explanation.md
+
+theme:
+  name: "material"
+
+plugins: 
+  - mkdocstrings
+

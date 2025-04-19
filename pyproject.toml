@@ -106,5 +106,8 @@ docstring-code-line-length = "dynamic"
 
 [dependency-groups]
 dev = [
+    "mkdocs>=1.6.1",
+    "mkdocs-material>=9.6.12",
+    "mkdocstrings[python]>=0.29.1",
     "pre-commit>=4.2.0",
 ]

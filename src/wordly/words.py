@@ -1,4 +1,4 @@
-"""Wordly Utility classes."""
+"""Wordly Utility classes for use in your python scripts."""
 
 from __future__ import annotations
 
