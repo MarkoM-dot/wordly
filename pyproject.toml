@@ -28,8 +28,11 @@ keywords = ["wordly", "definition", "dictionary", "DICT"]
 build = ["build", "twine"]
 
 [project.urls]
+Homepage = "https://markom-dot.github.io/wordly/"
+Documentation = "https://markom-dot.github.io/wordly/"
 Repository = "https://github.com/MarkoM-dot/wordly"
 Issues = "https://github.com/MarkoM-dot/wordly/issues"
+Changelog = "https://github.com/MarkoM-dot/wordly/blob/main/CHANGELOG.md"
 
 [project.scripts]
 wordly = "wordly.__main__:run"
@@ -117,8 +120,10 @@ major_version_zero = true
 [dependency-groups]
 dev = [
     "commitizen>=4.6.0",
+    "pre-commit>=4.2.0",
+]
+docs = [
     "mkdocs>=1.6.1",
     "mkdocs-material>=9.6.12",
     "mkdocstrings[python]>=0.29.1",
-    "pre-commit>=4.2.0",
 ]
