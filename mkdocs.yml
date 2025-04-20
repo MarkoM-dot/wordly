@@ -1,5 +1,6 @@
 site_name: Wordly
-
+repo_name: MarkoM-dot/wordly
+repo_url: https://github.com/MarkoM-dot/wordly
 nav:
   - index.md
   - tutorials.md
@@ -14,4 +15,5 @@ theme:
     accent: yellow
 
 plugins:
+  - search
   - mkdocstrings

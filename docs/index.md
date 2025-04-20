@@ -1,4 +1,4 @@
-# Wordly
+# Introduction
 
 This site contains documentation for the `wordly` python
 package.
