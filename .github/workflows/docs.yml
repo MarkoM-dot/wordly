@@ -10,10 +10,6 @@ on:
 
 jobs:
   deploy:
-    permissions:
-      pages: write
-      id-token: write
-
     runs-on: ubuntu-latest
 
     steps:
@@ -25,7 +21,11 @@ jobs:
           cache-dependency-glob: "uv.lock"
       - name: Install docs dependencies
         run: uv sync --only-group docs
-      - name: Deploy docs
-        env:
-          GH_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-        run: uv run mkdocs gh-deploy --clean --force
+      - name: Push docs to Github Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          personal_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: ./site
+          user_name: "github-actions[bot]"
+          user_email: "github-actions[bot]@users.noreply.github.com"
