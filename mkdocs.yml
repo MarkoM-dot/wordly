@@ -1,4 +1,6 @@
 site_name: Wordly
+site_description: Wordly python package documentation
+site_author: Marko Marić
 repo_name: MarkoM-dot/wordly
 repo_url: https://github.com/MarkoM-dot/wordly
 nav:
@@ -12,6 +14,7 @@ nav:
   - explanation.md
 
 theme:
+  locale: en
   name: "material"
   palette:
     primary: deep purple
