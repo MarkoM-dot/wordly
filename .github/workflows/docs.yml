@@ -21,6 +21,8 @@ jobs:
           cache-dependency-glob: "uv.lock"
       - name: Install docs dependencies
         run: uv sync --only-group docs
+      - name: Build docs
+        run: uv run mkdocs build
       - name: Push docs to Github Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
