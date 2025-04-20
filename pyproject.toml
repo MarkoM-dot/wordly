@@ -104,8 +104,19 @@ line-ending = "auto"
 docstring-code-format = false
 docstring-code-line-length = "dynamic"
 
+[tool.commitizen]
+name = "cz_conventional_commits"
+tag_format = "v$version"
+version = "0.1.4"
+version_scheme = "semver2"
+version_provider = "commitizen"
+version_files = ["src/wordly/__init__.py"]
+update_changelog_on_bump = true
+major_version_zero = true
+
 [dependency-groups]
 dev = [
+    "commitizen>=4.6.0",
     "mkdocs>=1.6.1",
     "mkdocs-material>=9.6.12",
     "mkdocstrings[python]>=0.29.1",
