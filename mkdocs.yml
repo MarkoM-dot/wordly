@@ -1,0 +1,19 @@
+site_name: Wordly
+repo_name: MarkoM-dot/wordly
+repo_url: https://github.com/MarkoM-dot/wordly
+nav:
+  - index.md
+  - tutorials.md
+  - How-To Guides: how-to-guides.md
+  - reference.md
+  - explanation.md
+
+theme:
+  name: "material"
+  palette:
+    primary: deep purple
+    accent: yellow
+
+plugins:
+  - search
+  - mkdocstrings
