@@ -1,3 +1,9 @@
+## v0.2.1 (2025-04-20)
+
+### Fix
+
+- **ci**: make use of uv when running commands (#3)
+
 ## v0.2.0 (2025-04-20)
 
 ### Feat
