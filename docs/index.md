@@ -7,6 +7,23 @@ words over the wire or locally.
 Wordly will retrieve dictionary definitions from [dict.org](https://dict.org/bin/Dict)
 by default but you may configure your own server hostname and port.
 
+If you are using `uv`, you may use `wordly` like so:
+
+```
+❯ uvx wordly recalcitrant
+"Recalcitrant" gcide "The Collaborative International Dictionary of English v.0.48"
+Recalcitrant \Re*cal"ci*trant\ (r[-e]*k[a^]l"s[i^]*trant), a.
+   [L. recalcitrans, p. pr. of recalcitrare to kick back; pref.
+   re- re- + calcitrare to kick, fr. calx heel. Cf.
+   {Inculcate}.]
+   Kicking back; recalcitrating; hence, showing repugnance or
+   opposition; refractory.
+   [1913 Webster]
+.
+```
+
+
+
 To get started with Wordly you have to install the package and run a command from
 your console to retrieve a definition of a term.
 
