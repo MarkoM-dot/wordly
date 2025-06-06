@@ -558,6 +558,18 @@ package. Wordly makes it easy to retrieve definitions of
 words over the wire or locally.</p>
 <p>Wordly will retrieve dictionary definitions from <a href="https://dict.org/bin/Dict">dict.org</a>
 by default but you may configure your own server hostname and port.</p>
+<p>If you are using <code>uv</code>, you may use <code>wordly</code> like so:</p>
+<pre><code>❯ uvx wordly recalcitrant
+&quot;Recalcitrant&quot; gcide &quot;The Collaborative International Dictionary of English v.0.48&quot;
+Recalcitrant \Re*cal&quot;ci*trant\ (r[-e]*k[a^]l&quot;s[i^]*trant), a.
+   [L. recalcitrans, p. pr. of recalcitrare to kick back; pref.
+   re- re- + calcitrare to kick, fr. calx heel. Cf.
+   {Inculcate}.]
+   Kicking back; recalcitrating; hence, showing repugnance or
+   opposition; refractory.
+   [1913 Webster]
+.
+</code></pre>
 <p>To get started with Wordly you have to install the package and run a command from
 your console to retrieve a definition of a term.</p>
 <pre><code>$ pip install wordly
