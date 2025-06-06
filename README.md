@@ -3,6 +3,23 @@
 A python client to communicate with servers implementing the
 [Dictionary Server Protocol](https://datatracker.ietf.org/doc/html/rfc2229)
 
+If you are using `uv`, you may use `wordly` like so:
+
+```
+❯ uvx wordly recalcitrant
+"Recalcitrant" gcide "The Collaborative International Dictionary of English v.0.48"
+Recalcitrant \Re*cal"ci*trant\ (r[-e]*k[a^]l"s[i^]*trant), a.
+   [L. recalcitrans, p. pr. of recalcitrare to kick back; pref.
+   re- re- + calcitrare to kick, fr. calx heel. Cf.
+   {Inculcate}.]
+   Kicking back; recalcitrating; hence, showing repugnance or
+   opposition; refractory.
+   [1913 Webster]
+.
+```
+
+
+
 ## Getting Started
 
 ```
