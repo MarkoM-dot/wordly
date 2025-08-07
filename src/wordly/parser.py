@@ -52,3 +52,9 @@ class DictParser:
             self.line += line
             self._process_line()
             self.line = b""
+
+    @property
+    def definition(self) -> str:
+        """Return the definition of a term from parsed content."""
+        return self.mapping.get(Status.DEFINITION.name, b"").decode()
+
