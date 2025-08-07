@@ -1,3 +1,9 @@
+## v0.2.2 (2025-08-07)
+
+### Fix
+
+- **cli**: ensure connections get closed after requesting definitions from server (#11)
+
 ## v0.2.1 (2025-04-20)
 
 ### Fix
