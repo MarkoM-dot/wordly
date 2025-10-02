@@ -18,8 +18,6 @@ Recalcitrant \Re*cal"ci*trant\ (r[-e]*k[a^]l"s[i^]*trant), a.
 .
 ```
 
-
-
 ## Getting Started
 
 ```
