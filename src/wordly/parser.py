@@ -13,13 +13,13 @@ class DictParser:
     Creates a map of DICT status code and associated information.
     """
 
-    def __init__(self, delimiter: bytes = b"\r\n"):
+    def __init__(self, delimiter: bytes = b"\r\n") -> None:
         """Initialize."""
         self.line = bytearray()
         self.mapping = defaultdict(bytearray)
         self.DELIMITER = delimiter
 
-    def _process_line(self, ending: bytes = b""):
+    def _process_line(self, ending: bytes = b"") -> None:
         """Process line."""
         code = self.line[:3]
         status = Status.by_value(bytes(code))
@@ -34,7 +34,7 @@ class DictParser:
         buf.extend(data)
         buf.extend(ending)
 
-    def feed(self, stream: bytes):
+    def feed(self, stream: bytes) -> None:
         """Feed stream of `bytes` to line reader.
 
         Calls `_process_line` on bytes stream until delimiter
@@ -57,4 +57,3 @@ class DictParser:
     def definition(self) -> str:
         """Return the definition of a term from parsed content."""
         return self.mapping.get(Status.DEFINITION.name, b"").decode()
-
