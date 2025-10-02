@@ -73,6 +73,7 @@ fix = true
 
 [tool.ruff.lint]
 extend-select = [
+    "ANN", # flake8 annotations
     "F",  # Pyflakes
     "B",  # flake8-bugbear
     "I",  # flake8-isort & isort
@@ -87,7 +88,6 @@ extend-select = [
 ignore = [
     "D106",  # Missing docstring in public nested class
     "S310", # Audit URL open for permitted schemes. Allowing use of `file:` or custom schemes is often unexpected.
-    "UP038", # union separated is instance type checks are slower so will be ignored
 ]
 
 [tool.ruff.lint.flake8-tidy-imports]
