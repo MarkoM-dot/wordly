@@ -1,0 +1,33 @@
+220 banner info from example.org
+113 help text follows
+DEFINE databaseword         -- look up word in database
+MATCH database strategy word --match word in database using strategy
+SHOW DB                      -- list all accessible databases
+SHOWDATABASES               -- list allaccessible databases
+SHOW STRAT -- list available matching strategies
+SHOW STRATEGIES              -- list available matching strategies
+SHOW INFO database           -- provide information about the database
+SHOW SERVER                  -- provide site-specific information
+OPTION MIME    -- use MIME headers
+CLIENT info-- identify client to server
+AUTH userstring             -- provide authentication information
+STATUS                       -- display timing information
+HELP        -- display this help information
+QUIT -- terminate connection
+
+The following commands are unofficial server extensions for debugging
+only.  You may find them useful if you are using telnet as a client.
+If you are writing a client, you MUST NOT use these commands, since
+they won't be supported on any other server!
+
+D word            -- DEFINE * word
+D database word       -- DEFINE database word
+M word             -- MATCH * . word
+M strategy word        -- MATCH * strategy word
+M database strategy word -- MATCH database strategy word
+S        -- STATUS
+H                            -- HELP
+Q                            -- QUIT
+.
+250 ok
+221 bye [d/m/c = 0/0/0; 0.000r 0.000u 0.000s]
