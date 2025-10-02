@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import asyncio
 from collections import UserString
+from collections.abc import Sequence
 
 from wordly.client import DictClient
 from wordly.status_codes import Status
@@ -12,7 +13,13 @@ from wordly.status_codes import Status
 class Word(UserString):
     """`str` subclass that provides an interface for retrieving definitions of terms."""
 
-    def __init__(self, seq, hostname: str = "dict.org", port: int = 2628, client=None):
+    def __init__(
+        self,
+        seq: Sequence[str],
+        hostname: str = "dict.org",
+        port: int = 2628,
+        client: DictClient | None = None,
+    ) -> None:
         """Initialize."""
         super().__init__(seq)
 
