@@ -4,12 +4,13 @@ from __future__ import annotations
 
 from enum import ReprEnum, unique
 from functools import cache
+from typing import Self
 
 
 class BytesEnum(bytes, ReprEnum):
     """Enum where members are also (and must be) `bytes`."""
 
-    def __new__(cls, *values):
+    def __new__(cls, *values: bytes) -> Self:
         """Values must be already of type `bytes`."""
         if any(not isinstance(value, bytes) for value in values):
             raise TypeError(f"All values must be of type `bytes`: got {values}")

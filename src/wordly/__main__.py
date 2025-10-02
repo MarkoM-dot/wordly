@@ -7,7 +7,7 @@ import asyncio
 from wordly.cli import main
 
 
-def run():
+def run() -> None:
     """Run async cli."""
     asyncio.run(main())
 

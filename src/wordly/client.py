@@ -3,38 +3,51 @@
 from __future__ import annotations
 
 import asyncio
+from typing import TYPE_CHECKING
 
 from wordly.parser import DictParser
 from wordly.status_codes import Status
+
+if TYPE_CHECKING:
+    from asyncio import StreamReader, StreamWriter
+    from types import TracebackType
+    from typing import Self
 
 
 class DictClient:
     """Client."""
 
-    def __init__(self, hostname: str = "dict.org", port: int = 2628) -> None:
+    def __init__(
+        self, hostname: str = "dict.org", port: int = 2628, READ_BYTES: int = 1024
+    ) -> None:
         """Initialize."""
         self.hostname = hostname
         self.port = port
         self.line_reader = DictParser()
         self.parsers = [self.line_reader]
-        self.reader: asyncio.StreamReader | None = None
-        self.writer: asyncio.StreamWriter | None = None
-        self.READ_BYTES = 1024
+        self.reader: StreamReader | None = None
+        self.writer: StreamWriter | None = None
+        self.READ_BYTES = READ_BYTES
 
     def __repr__(self) -> str:
-        """Return string representation of object."""
+        """Return string representation of `DictClient`."""
         return f"{self.__class__.__name__}({self.hostname=}, {self.port=})"
 
-    async def __aenter__(self):
+    async def __aenter__(self) -> Self:
         """Enter method for async context manager."""
         await self.connect()
         return self
 
-    async def __aexit__(self, exc_type, exc, tb):
+    async def __aexit__(
+        self,
+        exc_type: type[BaseException],
+        exc: type[BaseException],
+        tb: type[TracebackType],
+    ) -> None:
         """Exit method for async context manager."""
         await self.disconnect()
 
-    async def connect(self):
+    async def connect(self) -> tuple[StreamReader, StreamWriter]:
         """Upon successful connection a status code of 220 is expected."""
         self.reader, self.writer = await asyncio.open_connection(
             self.hostname, self.port
@@ -47,7 +60,7 @@ class DictClient:
 
         raise ConnectionError(f"Could not connect to: {self.hostname=}, {self.port=}")
 
-    async def disconnect(self):
+    async def disconnect(self) -> None:
         """Close client connection."""
         self.writer.write(b"QUIT\r\n")
         await self.writer.drain()

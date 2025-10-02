@@ -13,11 +13,11 @@ from wordly import __app_description__, __app_name__, __epilog__, __version__
 from wordly.client import DictClient
 
 
-async def print_definition(word: str, hostname: str, port: int) -> None:
+async def print_definition(word: str, hostname: str, port: int) -> str:
     """Print definitions to stdout."""
     async with DictClient(hostname=hostname, port=port) as client:
         response = await client.define(word)
-        print(response.definition)
+        return response.definition
 
 
 async def main(argv: Sequence[str] | None = None) -> None:
@@ -52,4 +52,5 @@ async def main(argv: Sequence[str] | None = None) -> None:
         print_definition(word, args["hostname"], args["port"]) for word in args["words"]
     ]
 
-    await asyncio.gather(*tasks)
+    definitions = await asyncio.gather(*tasks)
+    print(*definitions)
