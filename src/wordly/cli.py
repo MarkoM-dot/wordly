@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import argparse
 import asyncio
+from asyncio.tasks import as_completed
 from collections.abc import Sequence
 
 from wordly import __app_description__, __app_name__, __epilog__, __version__
@@ -52,5 +53,6 @@ async def main(argv: Sequence[str] | None = None) -> None:
         print_definition(word, args["hostname"], args["port"]) for word in args["words"]
     ]
 
-    definitions = await asyncio.gather(*tasks)
-    print(*definitions)
+    for task in asyncio.as_completed(tasks):
+        definition = await task
+        print(definition, flush=True)
