@@ -14,6 +14,6 @@ __app_description__ = (
     " from a server that implements Dictionary Server Protocol."
 )
 __epilog__ = "Stay in the know."
-__version__ = "0.3.0"
+__version__ = "0.4.0"
 
 __all__ = ["Word"]

@@ -1,3 +1,9 @@
+## v0.4.0 (2026-02-07)
+
+### Feat
+
+- **cli**: print definitions as tasks are completed (#14)
+
 ## v0.3.0 (2025-12-21)
 
 ### Feat
