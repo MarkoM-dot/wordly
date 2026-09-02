@@ -18,6 +18,7 @@ jobs:
           - 3.12
           - 3.13
           - 3.14
+          - 3.15
 
     steps:
       - uses: actions/checkout@v4
@@ -30,7 +31,7 @@ jobs:
       - name: Install Python
         run: uv python install
       - name: Install dependencies
-        run: uv sync
+        run: uv sync --locked --all-extras
       - name: Execute Tests
         run: |
           uv run -m unittest

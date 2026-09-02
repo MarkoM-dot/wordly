@@ -7,15 +7,14 @@ from __future__ import annotations
 
 import argparse
 import asyncio
-from asyncio.tasks import as_completed
 from collections.abc import Sequence
 
 from wordly import __app_description__, __app_name__, __epilog__, __version__
 from wordly.client import DictClient
 
 
-async def print_definition(word: str, hostname: str, port: int) -> str:
-    """Print definitions to stdout."""
+async def get_definition(word: str, hostname: str, port: int) -> str:
+    """Return definition of word."""
     async with DictClient(hostname=hostname, port=port) as client:
         response = await client.define(word)
         return response.definition
@@ -50,9 +49,9 @@ async def main(argv: Sequence[str] | None = None) -> None:
     args = vars(parser.parse_args(argv))
 
     tasks = [
-        print_definition(word, args["hostname"], args["port"]) for word in args["words"]
+        get_definition(word, args["hostname"], args["port"]) for word in args["words"]
     ]
 
     for task in asyncio.as_completed(tasks):
         definition = await task
-        print(definition, flush=True)
+        print(definition)
